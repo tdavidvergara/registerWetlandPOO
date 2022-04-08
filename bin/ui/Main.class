@@ -1,0 +1,78 @@
+import java.util.Scanner ;
+import model.Hotel ;
+import model.Cliente ;
+import model.Cuarto;
+
+public class Main{
+	public static final Scanner lector = new Scanner(System.in);
+    public static void main(String []args) {
+    registrarClientes() ;
+    Hotel objHotel = registerHotel() ;
+    int aux = 0 ;
+    System.out.println("DIGITE (1), SI DESEA AÑADIR UN CUARTO") ;
+    System.out.println("DIGITE (2), SI DESEA BUSCAR UN CUARTO") ;
+    System.out.println("DIGITE (3), SI DESEA SALIR") ;
+    int answer = lector.nextInt();
+    switch (answer) {
+        case 1:
+        	registerRoom(objHotel) ;
+			break ;
+		case 2:
+			isAvalaible(objHotel) ;
+			break;
+		case 3 :
+		System.out.println("gracias por usar el servicio") ;
+		    break;
+    }
+    }
+
+		public static String registrarClientes(){
+			String mensajeC = "registrado con éxito" ;
+			System.out.println("digite su nombre, su id y su email");
+			String nameC = lector.nextLine() ;
+			String idC= lector.nextLine();
+			String email = lector.nextLine() ;
+
+			return mensajeC ;
+		}
+
+        public static Hotel registerHotel(){
+        System.out.println("Digite el nombre del hotel");
+        String name= lector.nextLine();
+        System.out.println("Digite el Nit");
+        String nit = lector.nextLine();
+        System.out.println("Digite la direccion");
+        String direccion = lector.nextLine();
+        System.out.println("Digite su numero de celular");
+        String telefono= lector.nextLine();
+        Hotel objHotel = new Hotel(name, nit, direccion, telefono);
+        
+
+        return objHotel;
+    }
+     
+    public static void registerRoom(Hotel objHotel ){
+		System.out.println("digite el nombre del cuarto") ;
+        String name = lector.nextLine() ;
+        System.out.println("Digite el tipo de cuarto: sencillo doble o tripe.") ;
+        String tipo = lector.nextLine() ;
+        System.out.println("quiere un mirador hacia las montañas?si o no") ;
+        String mountainView=lector.nextLine() ;
+        System.out.println("Digite (sencillo) si desea un baño sencilo de lo contrario digite (acabados)") ;
+        String acabados=lector.nextLine() ;
+        System.out.println("desea una bañera o ducha?")  ;
+        String shower=lector.nextLine() ;
+        Hotel.addRoom(name, tipo,mountainView, acabados, shower, Cuarto [] );
+    }
+
+        public static void isAvalaible(Hotel objHotel){
+            
+            System.out.print("Digite para buscar sencillo doble o tripe");
+            String busqueda = lector.nextLine(); 
+            int auxiliar = objHotel.isAvalaible(busqueda) ;
+            if(auxiliar>=0){
+                System.out.println("se registró existosamente") ;
+            }
+        }
+}
+
